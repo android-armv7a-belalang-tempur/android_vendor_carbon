@@ -1,5 +1,5 @@
 # brand
-PRODUCT_BRAND ?= Carbon
+PRODUCT_BRAND ?= Chocodot
 
 # SuperUser
 SUPERUSER_EMBEDDED := true
@@ -14,7 +14,7 @@ TARGET_BOOTANIMATION_SIZE := $(shell \
   fi )
 
 # get a sorted list of the sizes
-bootanimation_sizes := $(subst .zip,, $(shell ls vendor/carbon/prebuilt/common/bootanimation))
+bootanimation_sizes := $(subst .zip,, $(shell ls vendor/Chocodot/prebuilt/common/bootanimation))
 bootanimation_sizes := $(shell echo -e $(subst $(space),'\n',$(bootanimation_sizes)) | sort -rn)
 
 # find the appropriate size and set
@@ -30,7 +30,7 @@ $(eval TARGET_BOOTANIMATION_NAME := $(shell \
 endef
 $(foreach size,$(bootanimation_sizes), $(call check_and_set_bootanimation,$(size)))
 
-PRODUCT_BOOTANIMATION := vendor/carbon/prebuilt/common/bootanimation/$(TARGET_BOOTANIMATION_NAME).zip
+PRODUCT_BOOTANIMATION := vendor/Chocodot/prebuilt/common/bootanimation/$(TARGET_BOOTANIMATION_NAME).zip
 endif
 
 ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
@@ -82,12 +82,12 @@ PRODUCT_PACKAGES += \
     VoicePlus \
     libemoji
 
-# carbon packages
+# Chocodot packages
 PRODUCT_PACKAGES += \
     BlueBalls \
-    CarbonAbout \
-    CarbonDelta \
-    CarbonFibers \
+    ChocodotAbout \
+    ChocodotDelta \
+    ChocodotFibers \
     ROMStats \
     Wallpapers
 
@@ -133,43 +133,43 @@ PRODUCT_PACKAGES += \
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # themes
-include vendor/carbon/config/theme_chooser.mk
+include vendor/Chocodot/config/theme_chooser.mk
 
 # korean
 $(call inherit-product-if-exists, external/naver-fonts/fonts.mk)
 
 # overlay
-PRODUCT_PACKAGE_OVERLAYS += vendor/carbon/overlay/dictionaries
-PRODUCT_PACKAGE_OVERLAYS += vendor/carbon/overlay/common
+PRODUCT_PACKAGE_OVERLAYS += vendor/Chocodot/overlay/dictionaries
+PRODUCT_PACKAGE_OVERLAYS += vendor/Chocodot/overlay/common
 
 # bin
 PRODUCT_COPY_FILES += \
-    vendor/carbon/prebuilt/common/bin/sysinit:system/bin/sysinit
+    vendor/Chocodot/prebuilt/common/bin/sysinit:system/bin/sysinit
 
 # etc
 PRODUCT_COPY_FILES += \
-    vendor/carbon/prebuilt/common/etc/init.carbon.rc:root/init.carbon.rc
+    vendor/Chocodot/prebuilt/common/etc/init.Chocodot.rc:root/init.Chocodot.rc
 
 # prebuilt
 PRODUCT_COPY_FILES += \
-    vendor/carbon/prebuilt/common/xbin/sysro:system/xbin/sysro \
-    vendor/carbon/prebuilt/common/xbin/sysrw:system/xbin/sysrw \
-    vendor/carbon/prebuilt/common/media/LMprec_508.emd:system/media/LMprec_508.emd \
-    vendor/carbon/prebuilt/common/media/PFFprec_600.emd:system/media/PFFprec_600.emd
+    vendor/Chocodot/prebuilt/common/xbin/sysro:system/xbin/sysro \
+    vendor/Chocodot/prebuilt/common/xbin/sysrw:system/xbin/sysrw \
+    vendor/Chocodot/prebuilt/common/media/LMprec_508.emd:system/media/LMprec_508.emd \
+    vendor/Chocodot/prebuilt/common/media/PFFprec_600.emd:system/media/PFFprec_600.emd
 
 # Backup tool
-CARBON_BUILD = true
+Chocodot_BUILD = true
 PRODUCT_COPY_FILES += \
-    vendor/carbon/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh \
-    vendor/carbon/prebuilt/common/bin/backuptool.functions:system/bin/backuptool.functions \
-    vendor/carbon/prebuilt/common/bin/50-carbon.sh:system/addon.d/50-carbon.sh \
-    vendor/carbon/prebuilt/common/bin/blacklist:system/addon.d/blacklist \
-    vendor/carbon/prebuilt/common/bin/99-backup.sh:system/addon.d/99-backup.sh \
-    vendor/carbon/prebuilt/common/etc/backup.conf:system/etc/backup.conf
+    vendor/Chocodot/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh \
+    vendor/Chocodot/prebuilt/common/bin/backuptool.functions:system/bin/backuptool.functions \
+    vendor/Chocodot/prebuilt/common/bin/50-Chocodot.sh:system/addon.d/50-Chocodot.sh \
+    vendor/Chocodot/prebuilt/common/bin/blacklist:system/addon.d/blacklist \
+    vendor/Chocodot/prebuilt/common/bin/99-backup.sh:system/addon.d/99-backup.sh \
+    vendor/Chocodot/prebuilt/common/etc/backup.conf:system/etc/backup.conf
 
 # SELinux filesystem labels
 PRODUCT_COPY_FILES += \
-    vendor/carbon/prebuilt/common/etc/init.d/50selinuxrelabel:system/etc/init.d/50selinuxrelabel
+    vendor/Chocodot/prebuilt/common/etc/init.d/50selinuxrelabel:system/etc/init.d/50selinuxrelabel
 
 # sip/voip
 PRODUCT_COPY_FILES += \
@@ -177,46 +177,46 @@ PRODUCT_COPY_FILES += \
 
 # nfc
 PRODUCT_COPY_FILES += \
-    vendor/carbon/config/permissions/com.carbon.android.xml:system/etc/permissions/com.carbon.android.xml \
-    vendor/carbon/config/permissions/com.carbon.nfc.enhanced.xml:system/etc/permissions/com.carbon.nfc.enhanced.xml
+    vendor/Chocodot/config/permissions/com.Chocodot.android.xml:system/etc/permissions/com.Chocodot.android.xml \
+    vendor/Chocodot/config/permissions/com.Chocodot.nfc.enhanced.xml:system/etc/permissions/com.Chocodot.nfc.enhanced.xml
 
 # version
 RELEASE = false
-CARBON_VERSION_MAJOR = 2
-CARBON_VERSION_MINOR = 0
+Chocodot_VERSION_MAJOR = 2
+Chocodot_VERSION_MINOR = 0
 
-# Set CARBON_BUILDTYPE
-ifdef CARBON_NIGHTLY
-    CARBON_BUILDTYPE := NIGHTLY
+# Set Chocodot_BUILDTYPE
+ifdef Chocodot_NIGHTLY
+    Chocodot_BUILDTYPE := NIGHTLY
 endif
-ifdef CARBON_EXPERIMENTAL
-    CARBON_BUILDTYPE := EXPERIMENTAL
+ifdef Chocodot_EXPERIMENTAL
+    Chocodot_BUILDTYPE := EXPERIMENTAL
 endif
-ifdef CARBON_RELEASE
-    CARBON_BUILDTYPE := RELEASE
+ifdef Chocodot_RELEASE
+    Chocodot_BUILDTYPE := RELEASE
 endif
-# Set Unofficial if no buildtype set (Buildtype should ONLY be set by Carbon Devs!)
-ifdef CARBON_BUILDTYPE
+# Set Unofficial if no buildtype set (Buildtype should ONLY be set by Chocodot Devs!)
+ifdef Chocodot_BUILDTYPE
 else
-    CARBON_BUILDTYPE := UNOFFICIAL
-    CARBON_VERSION_MAJOR :=
-    CARBON_VERSION_MINOR :=
+    Chocodot_BUILDTYPE := UNOFFICIAL
+    Chocodot_VERSION_MAJOR :=
+    Chocodot_VERSION_MINOR :=
 endif
 
-# Set Carbon version
-ifdef CARBON_RELEASE
-    CARBON_VERSION := "CARBON-KK-v"$(CARBON_VERSION_MAJOR).$(CARBON_VERSION_MINOR)
+# Set Chocodot version
+ifdef Chocodot_RELEASE
+    Chocodot_VERSION := "Chocodot-KK-v"$(Chocodot_VERSION_MAJOR).$(Chocodot_VERSION_MINOR)
 else
-    CARBON_VERSION := "CARBON-KK-$(CARBON_BUILDTYPE)"-$(shell date +%Y%m%d-%H%M)
+    Chocodot_VERSION := "Chocodot-KK-$(Chocodot_BUILDTYPE)"-$(shell date +%Y%m%d-%H%M)
 endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
-  ro.carbon.version=$(CARBON_VERSION)
+  ro.Chocodot.version=$(Chocodot_VERSION)
 
 # ROM Statistics and ROM Identification
 PRODUCT_PROPERTY_OVERRIDES += \
 ro.romstats.askfirst=1 \
 ro.romstats.ga=UA-43747246-1 \
-ro.romstats.name=CarbonRom- \
-ro.romstats.url=http://stats.carbon-rom.com \
-ro.romstats.version=$(CARBON_VERSION)
+ro.romstats.name=ChocodotRom- \
+ro.romstats.url=http://stats.Chocodot-rom.com \
+ro.romstats.version=$(Chocodot_VERSION)
